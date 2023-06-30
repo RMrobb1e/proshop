@@ -1,0 +1,27 @@
+{
+  "name": "proshop",
+  "version": "1.0.0",
+  "description": "eCommerce application built with MERN stack",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "nodemon -q dist/server.js",
+    "server": "concurrently --kill-others \"npx tsc --watch\" \"nodemon -q dist/server.js\"",
+    "client": "npm run dev --prefix frontend",
+    "dev": "npm-run-all --parallel server client"
+  },
+  "author": "RALM",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.3.2",
+    "concurrently": "^8.2.0",
+    "nodemon": "^2.0.22",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.1.6"
+  }
+}
