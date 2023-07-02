@@ -18,11 +18,11 @@ app.get('/api/products/', (_req: Request, res: Response) => {
   res.json(products);
 });
 
-app.get('/api/products/:id', (_req: Request, res: Response) => {
-  const product = products.find((p) => p._id === _req.params.id);
+// app.get('/api/products/:id', (_req: Request, res: Response) => {
+//   const product = products.find((p) => p._id === _req.params.id);
 
-  res.json(product);
-});
+//   res.json(product);
+// });
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running on port ${port}`);

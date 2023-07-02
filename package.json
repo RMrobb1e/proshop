@@ -9,11 +9,14 @@
     "start": "npx nodemon",
     "server": "npm run build && node dist/server.js",
     "client": "npm run dev --prefix frontend",
-    "dev": "npm-run-all --parallel server client"
+    "dev": "npm-run-all --parallel server client",
+    "data:import": "npm run build && node dist/seeder.js -i",
+    "data:destroy": "npm run build && node dist/seeder.js -d"
   },
   "author": "RALM",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongoose": "^7.3.1"
@@ -22,6 +25,7 @@
     "@types/express": "^4.17.17",
     "@types/node": "^20.3.2",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "colors": "^1.4.0",
     "concurrently": "^8.2.0",
     "eslint": "^8.0.1",
     "eslint-config-standard-with-typescript": "^36.0.0",
