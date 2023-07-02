@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
+import { Provider } from 'react-redux';
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import App from './App.tsx';
+import CartScreen from './screens/CartScreen.tsx';
 import HomeScreen from './screens/HomeScreen.tsx';
 import ProductScreen from './screens/ProductScreen.tsx';
 import store from './store.ts';
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
       <Route path="/product/:id" element={<ProductScreen />} />
+      <Route path="/cart" element={<CartScreen />} />
     </Route>
   )
 );
