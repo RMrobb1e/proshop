@@ -7,10 +7,13 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import './assets/bootstrap.custom.css';
-import './assets/index.css';
+import { Provider } from 'react-redux';
 import HomeScreen from './screens/HomeScreen.tsx';
 import ProductScreen from './screens/ProductScreen.tsx';
+import store from './store.ts';
+
+import './assets/bootstrap.custom.css';
+import './assets/index.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +26,8 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
