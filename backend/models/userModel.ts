@@ -1,6 +1,23 @@
-import mongoose from 'mongoose';
+import mongoose, { Model, Schema } from 'mongoose';
+import bcrypt from 'bcryptjs';
 
-const userSchema = new mongoose.Schema(
+interface IUser {
+  name: string;
+  email: string;
+  password: string;
+  isAdmin: boolean;
+  role: string;
+  resetPasswordToken: string;
+  resetPasswordExpire: Date;
+}
+
+interface IUserMethods {
+  matchPassword: (enteredPassword: string) => Promise<boolean>;
+}
+
+type UserModel = Model<IUser, {}, IUserMethods>;
+
+const userSchema = new Schema<IUser, UserModel, IUserMethods>(
   {
     name: {
       type: String,
@@ -21,7 +38,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Please enter your password'],
       minLength: [6, 'Your password must be longer than 6 characters'],
-      select: false,
     },
     isAdmin: {
       type: Boolean,
@@ -49,6 +65,10 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+userSchema.method('matchPassword', async function (enteredPassword: string) {
+  return await bcrypt.compare(enteredPassword, this.password);
+});
 
 const User = mongoose.model('User', userSchema);
 
