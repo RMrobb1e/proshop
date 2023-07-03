@@ -1,7 +1,7 @@
 import mongoose, { Model, Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
-interface IUser {
+export interface IUser {
   name: string;
   email: string;
   password: string;
@@ -68,6 +68,15 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>(
 
 userSchema.method('matchPassword', async function (enteredPassword: string) {
   return await bcrypt.compare(enteredPassword, this.password);
+});
+
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    next();
+  }
+
+  const salt = await bcrypt.genSalt(Number(10));
+  this.password = await bcrypt.hash(this.password, salt);
 });
 
 const User = mongoose.model('User', userSchema);

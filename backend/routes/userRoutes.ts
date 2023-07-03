@@ -12,21 +12,38 @@ import {
   deleteUser,
   updateUser,
 } from '../controllers/userController';
+import { protect, admin } from '../middleware/authMiddleware';
 
 router
   .route('/')
   .post(registerUser as RequestHandler)
-  .get(getUsers as RequestHandler);
+  .get(
+    protect as RequestHandler,
+    admin as RequestHandler,
+    getUsers as RequestHandler
+  );
 router.post('/logout', logoutUser as RequestHandler);
-router.post('/login', authUser as RequestHandler);
+router.post('/auth', authUser as RequestHandler);
 router
   .route('/profile')
-  .get(getUserProfile as RequestHandler)
-  .put(updateUserProfile as RequestHandler);
+  .get(protect as RequestHandler, getUserProfile as RequestHandler)
+  .put(protect as RequestHandler, updateUserProfile as RequestHandler);
 router
   .route('/:id')
-  .delete(deleteUser as RequestHandler)
-  .get(getUserById as RequestHandler)
-  .put(updateUser as RequestHandler);
+  .delete(
+    protect as RequestHandler,
+    admin as RequestHandler,
+    deleteUser as RequestHandler
+  )
+  .get(
+    protect as RequestHandler,
+    admin as RequestHandler,
+    getUserById as RequestHandler
+  )
+  .put(
+    protect as RequestHandler,
+    admin as RequestHandler,
+    updateUser as RequestHandler
+  );
 
 export default router;
