@@ -7,7 +7,6 @@ import { RootState } from '../types/store';
 
 const Header = () => {
   const { cartItems } = useSelector((state: RootState) => state.cart);
-  console.log(cartItems);
 
   return (
     <header>
