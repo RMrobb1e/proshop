@@ -72,7 +72,7 @@ const RegisterScreen = () => {
             onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Form.Group controlId="password">
+        <Form.Group controlId="passwor`d">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
