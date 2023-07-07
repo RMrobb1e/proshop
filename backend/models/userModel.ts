@@ -44,16 +44,6 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>(
       required: true,
       default: false,
     },
-    // avatar: {
-    //   public_id: {
-    //     type: String,
-    //     required: true,
-    //   },
-    //   url: {
-    //     type: String,
-    //     required: true,
-    //   },
-    // },
     role: {
       type: String,
       default: 'user',
