@@ -25,11 +25,7 @@ router
   .get(protect as RequestHandler, getMyOrders as RequestHandler);
 router
   .route('/:id')
-  .get(
-    protect as RequestHandler,
-    admin as RequestHandler,
-    getOrderById as RequestHandler
-  );
+  .get(protect as RequestHandler, getOrderById as RequestHandler);
 router
   .route('/:id/pay')
   .put(protect as RequestHandler, updateOrderToPaid as RequestHandler);
