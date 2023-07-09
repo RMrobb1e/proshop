@@ -17,6 +17,7 @@ const errorHandler = (
 
   if (err.name === 'CastError' && err.kind === 'ObjectId') {
     statusCode = 404;
+    console.log(err);
     message = 'Resource not found';
   }
 
