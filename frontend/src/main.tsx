@@ -24,6 +24,7 @@ import store from './store.ts';
 import './assets/bootstrap.custom.css';
 import './assets/index.css';
 import OrderScreen from './screens/OrderScreen.tsx';
+import ProfileScreen from './screens/ProfileScreen.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
         <Route path="/payment" element={<PaymentScreen />} />
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
         <Route path="/order/:id" element={<OrderScreen />} />
+        <Route path="/profile" element={<ProfileScreen />} />
       </Route>
     </Route>
   )
@@ -46,7 +48,7 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <PayPalScriptProvider deferLoading>
+      <PayPalScriptProvider deferLoading options={{ clientId: '' }}>
         <RouterProvider router={router} />
       </PayPalScriptProvider>
     </Provider>
