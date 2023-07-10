@@ -10,7 +10,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         body,
       }),
     }),
-    getMyOrders: builder.query({
+    getMyOrders: builder.query<any, void>({
       query: () => ({
         url: `${ORDERS_URL}/mine`,
       }),

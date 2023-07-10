@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../types/store';
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Button, Col, Form, Row, Table } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { useProfileMutation } from '../slices/usersApiSlice';
 import Loader from '../components/Loader';
 import { toast } from 'react-toastify';
 import { setCredentials } from '../slices/authSlice';
+import { useGetMyOrdersQuery } from '../slices/ordersApiSlice';
+import Message from '../components/Message';
+import { FaTimes } from 'react-icons/fa';
 
 export const ProfileScreen = () => {
   const [name, setName] = useState('');
@@ -18,6 +22,11 @@ export const ProfileScreen = () => {
   const { userInfo } = useSelector((state: RootState) => state.auth);
   const [updateProfile, { isLoading: isLoadingUpdateProfile }] =
     useProfileMutation();
+  const {
+    data: orders,
+    isLoading: isLoadingMyOrders,
+    error: isMyOrdersError,
+  } = useGetMyOrdersQuery();
 
   useEffect(() => {
     if (userInfo) {
@@ -99,7 +108,56 @@ export const ProfileScreen = () => {
           {isLoadingUpdateProfile && <Loader />}
         </Form>
       </Col>
-      <Col md={9}>2</Col>
+      <Col md={9}>
+        <h2>My Orders</h2>
+        {isLoadingMyOrders && <Loader />}
+        {isMyOrdersError && (
+          <Message variant="danger">
+            {(isMyOrdersError as any)?.data?.message ??
+              (isMyOrdersError as any)?.error}
+          </Message>
+        )}
+        <Table striped bordered hover responsive className="table-sm">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>DATE</th>
+              <th>TOTAL</th>
+              <th>PAID</th>
+              <th>DELIVERED</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {(orders ?? []).map((order) => (
+              <tr key={order._id}>
+                <td>{order._id}</td>
+                <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                <td>${order.totalPrice}</td>
+                <td>
+                  {order.isPaid ? (
+                    new Date(order.paidAt).toLocaleDateString()
+                  ) : (
+                    <FaTimes style={{ color: 'red' }} />
+                  )}
+                </td>
+                <td>
+                  {order.isDelivered ? (
+                    new Date(order.deliveredAt).toLocaleDateString()
+                  ) : (
+                    <FaTimes style={{ color: 'red' }} />
+                  )}
+                </td>
+                <td>
+                  <LinkContainer to={`/order/${order._id}`}>
+                    <Button className="btn-sm">Details</Button>
+                  </LinkContainer>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Col>
     </Row>
   );
 };
