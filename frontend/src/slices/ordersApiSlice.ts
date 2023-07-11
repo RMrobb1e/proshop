@@ -46,10 +46,11 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
       }),
     }),
-    getOrders: builder.query({
+    getOrders: builder.query<any, void>({
       query: () => ({
         url: ORDERS_URL,
       }),
+      keepUnusedDataFor: 5,
     }),
   }),
   overrideExisting: false,
