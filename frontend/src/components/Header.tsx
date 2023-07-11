@@ -36,7 +36,7 @@ const Header = () => {
               <img
                 src={logo}
                 alt="logo"
-                style={{ width: 30, marginRight: 12 }}
+                style={{ width: 30, marginRight: 12, color: 'white' }}
               />
               RalmShop
             </Navbar.Brand>
