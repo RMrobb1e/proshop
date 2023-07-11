@@ -103,18 +103,18 @@ const OrderScreen = () => {
     }
   };
 
-  const onApproveTest = async () => {
-    console.log(orderId);
-    await payOrder({
-      orderId,
-      details: {
-        payer: {},
-      },
-    });
+  // const onApproveTest = async () => {
+  //   console.log(orderId);
+  //   await payOrder({
+  //     orderId,
+  //     details: {
+  //       payer: {},
+  //     },
+  //   });
 
-    refetch();
-    toast.success('Payment Success');
-  };
+  //   refetch();
+  //   toast.success('Payment Success');
+  // };
 
   if (isLoading) return <Loader />;
 

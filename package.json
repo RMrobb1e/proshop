@@ -1,5 +1,6 @@
 {
-  "name": "proshop",
+  "name": "ralm-shop",
+  "author": "RALM",
   "version": "1.0.0",
   "description": "eCommerce application built with MERN stack",
   "type": "commonjs",
@@ -13,7 +14,6 @@
     "data:import": "npm run build && node dist/seeder.js -i",
     "data:destroy": "npm run build && node dist/seeder.js -d"
   },
-  "author": "RALM",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
