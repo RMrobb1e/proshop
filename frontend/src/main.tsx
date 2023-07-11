@@ -1,3 +1,4 @@
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -7,24 +8,25 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import App from './App.tsx';
+import AdminRoute from './components/AdminRoute.tsx';
+import PrivateRoute from './components/PrivateRoute.tsx';
+import OrderListScreen from './screens/admin/OrderListScreen.tsx';
 import CartScreen from './screens/CartScreen.tsx';
 import HomeScreen from './screens/HomeScreen.tsx';
-import ProductScreen from './screens/ProductScreen.tsx';
 import LoginScreen from './screens/LoginScreen.tsx';
-import RegisterScreen from './screens/RegisterScreen.tsx';
-import ShippingScreen from './screens/ShippingScreen.tsx';
-import PrivateRoute from './components/PrivateRoute.tsx';
+import OrderScreen from './screens/OrderScreen.tsx';
 import PaymentScreen from './screens/PaymentScreen.tsx';
 import PlaceOrderScreen from './screens/PlaceOrderScreen.tsx';
+import ProductScreen from './screens/ProductScreen.tsx';
+import ProfileScreen from './screens/ProfileScreen.tsx';
+import RegisterScreen from './screens/RegisterScreen.tsx';
+import ShippingScreen from './screens/ShippingScreen.tsx';
 
 import store from './store.ts';
 
 import './assets/bootstrap.custom.css';
 import './assets/index.css';
-import OrderScreen from './screens/OrderScreen.tsx';
-import ProfileScreen from './screens/ProfileScreen.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,10 +39,14 @@ const router = createBrowserRouter(
       <Route path="" element={<PrivateRoute />}>
         <Route path="/shipping" element={<ShippingScreen />} />
         <Route path="/payment" element={<PaymentScreen />} />
-        <Route path="/placeorder" element={<PlaceOrderScreen />} />
+        <Route path="/place-order" element={<PlaceOrderScreen />} />
         <Route path="/order/:id" element={<OrderScreen />} />
         <Route path="/profile" element={<ProfileScreen />} />
       </Route>
+      <Route path="" element={<AdminRoute />}>
+        <Route path="/admin/order-list" element={<OrderListScreen />} />
+      </Route>
+      <Route path="*" element={<h1>Not Found</h1>} />
     </Route>
   )
 );

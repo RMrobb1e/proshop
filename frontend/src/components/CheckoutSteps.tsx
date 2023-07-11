@@ -40,7 +40,7 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }: TCheckoutStepsProps) => {
       </Nav.Item>
       <Nav.Item>
         {step4 ? (
-          <LinkContainer to="/placeorder">
+          <LinkContainer to="/place-order">
             <Nav.Link>Place Order</Nav.Link>
           </LinkContainer>
         ) : (
