@@ -28,6 +28,7 @@ import store from './store.ts';
 import './assets/bootstrap.custom.css';
 import './assets/index.css';
 import ProductListScreen from './screens/admin/ProductListScreen.tsx';
+import ProductsEditScreen from './screens/admin/ProductsEditScreen.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -47,6 +48,10 @@ const router = createBrowserRouter(
       <Route path="" element={<AdminRoute />}>
         <Route path="/admin/order-list" element={<OrderListScreen />} />
         <Route path="/admin/product-list" element={<ProductListScreen />} />
+        <Route
+          path="/admin/product/:id/edit"
+          element={<ProductsEditScreen />}
+        />
       </Route>
       <Route path="*" element={<h1>Not Found</h1>} />
     </Route>
