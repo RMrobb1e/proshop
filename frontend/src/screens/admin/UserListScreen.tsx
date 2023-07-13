@@ -3,24 +3,30 @@ import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { FaCheck, FaEdit, FaTimes, FaTrash } from 'react-icons/fa';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useGetUsersQuery } from '../../slices/usersApiSlice';
+import {
+  useDeleteUserMutation,
+  useGetUsersQuery,
+} from '../../slices/usersApiSlice';
+import { toast } from 'react-toastify';
 
 const UserListScreen = () => {
   const {
     data: users,
     isLoading: isLoadingOrders,
     error: isOrdersError,
+    refetch,
   } = useGetUsersQuery();
+  const [deleteUser, { isLoading: isLoadingDelete }] = useDeleteUserMutation();
 
   const deleteHandler = async (id: string) => {
     if (window.confirm('Are you sure?')) {
       // delete user
       try {
-        // await deleteProduct(id);
-        // refetch();
-        // toast.success('Product deleted successfully');
+        await deleteUser(id);
+        refetch();
+        toast.success('Product deleted successfully');
       } catch (error: any) {
-        // toast.error(error?.data.message ?? error.error);
+        toast.error(error?.data.message ?? error.error);
       }
     }
   };
@@ -76,6 +82,7 @@ const UserListScreen = () => {
                   className="btn-sm"
                   variant="danger"
                   onClick={() => deleteHandler(user._id)}
+                  disabled={isLoadingDelete}
                 >
                   <FaTrash style={{ color: 'white' }} />
                 </Button>
