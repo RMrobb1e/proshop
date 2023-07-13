@@ -50,7 +50,6 @@ const ProductsEditScreen = () => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      console.log(productId);
       await updateProduct({
         productId,
         name,
@@ -61,6 +60,7 @@ const ProductsEditScreen = () => {
         countInStock,
         description,
       }).unwrap();
+      refetch();
       toast.success('Product updated successfully');
       navigate('/admin/product-list');
     } catch (error: any) {
