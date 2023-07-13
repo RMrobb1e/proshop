@@ -34,6 +34,12 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    deleteProduct: builder.mutation<any, string>({
+      query: (id) => ({
+        url: `${PRODUCTS_URL}/${id}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
@@ -43,4 +49,5 @@ export const {
   useCreateProductMutation,
   useUpdateProductMutation,
   useUploadProductImageMutation,
+  useDeleteProductMutation,
 } = productsApiSlice;

@@ -1,6 +1,7 @@
 import { LinkContainer } from 'react-router-bootstrap';
 import {
   useCreateProductMutation,
+  useDeleteProductMutation,
   useGetProductsQuery,
 } from '../../slices/productsApiSlice';
 import Loader from '../../components/Loader';
@@ -14,9 +15,19 @@ const ProductListScreen = () => {
   const [createProduct, { isLoading: isLoadingCreate }] =
     useCreateProductMutation();
 
-  const deleteHandler = (id: string) => {
+  const [deleteProduct, { isLoading: isLoadingDelete }] =
+    useDeleteProductMutation();
+
+  const deleteHandler = async (id: string) => {
     if (window.confirm('Are you sure?')) {
       // delete products
+      try {
+        await deleteProduct(id);
+        refetch();
+        toast.success('Product deleted successfully');
+      } catch (error: any) {
+        toast.error(error?.data.message ?? error.error);
+      }
     }
   };
 
@@ -78,8 +89,10 @@ const ProductListScreen = () => {
                   </Button>
                 </LinkContainer>
                 <Button
+                  key={product._id}
                   variant="danger"
                   className="btn-sm"
+                  disabled={isLoadingDelete}
                   onClick={() => deleteHandler(product._id)}
                 >
                   <FaTrash style={{ color: 'white' }} />

@@ -1,6 +1,7 @@
 import express, { RequestHandler } from 'express';
 import {
   createProduct,
+  deleteProduct,
   getProductById,
   getProducts,
   updateProduct,
@@ -24,6 +25,11 @@ router
     protect as RequestHandler,
     admin as RequestHandler,
     updateProduct as RequestHandler
+  )
+  .delete(
+    protect as RequestHandler,
+    admin as RequestHandler,
+    deleteProduct as RequestHandler
   );
 
 export default router;
