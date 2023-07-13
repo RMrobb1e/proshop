@@ -22,13 +22,14 @@ import ProductScreen from './screens/ProductScreen.tsx';
 import ProfileScreen from './screens/ProfileScreen.tsx';
 import RegisterScreen from './screens/RegisterScreen.tsx';
 import ShippingScreen from './screens/ShippingScreen.tsx';
+import ProductListScreen from './screens/admin/ProductListScreen.tsx';
+import ProductsEditScreen from './screens/admin/ProductsEditScreen.tsx';
+import UserListScreen from './screens/admin/UserListScreen.tsx';
 
 import store from './store.ts';
 
 import './assets/bootstrap.custom.css';
 import './assets/index.css';
-import ProductListScreen from './screens/admin/ProductListScreen.tsx';
-import ProductsEditScreen from './screens/admin/ProductsEditScreen.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -48,6 +49,7 @@ const router = createBrowserRouter(
       <Route path="" element={<AdminRoute />}>
         <Route path="/admin/order-list" element={<OrderListScreen />} />
         <Route path="/admin/product-list" element={<ProductListScreen />} />
+        <Route path="/admin/user-list" element={<UserListScreen />} />
         <Route
           path="/admin/product/:id/edit"
           element={<ProductsEditScreen />}
