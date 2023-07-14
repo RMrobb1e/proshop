@@ -32,4 +32,8 @@ router
     deleteProduct as RequestHandler
   );
 
+router
+  .route('/:id/reviews')
+  .post(protect as RequestHandler, createProduct as RequestHandler);
+
 export default router;
