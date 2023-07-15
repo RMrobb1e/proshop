@@ -13,9 +13,10 @@ import { useParams } from 'react-router-dom';
 import Paginate from '../../components/Paginate';
 
 const ProductListScreen = () => {
-  const { pageNumber = '1' } = useParams();
+  const { pageNumber = '1', keyword = '' } = useParams();
   const { data, isLoading, error, refetch } = useGetProductsQuery({
     pageNumber,
+    keyword,
   });
   const [createProduct, { isLoading: isLoadingCreate }] =
     useCreateProductMutation();
