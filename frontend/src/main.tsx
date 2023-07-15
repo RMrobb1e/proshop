@@ -1,6 +1,7 @@
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import {
   createBrowserRouter,
@@ -8,10 +9,15 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
+
 import App from './App.tsx';
 import AdminRoute from './components/AdminRoute.tsx';
 import PrivateRoute from './components/PrivateRoute.tsx';
 import OrderListScreen from './screens/admin/OrderListScreen.tsx';
+import ProductListScreen from './screens/admin/ProductListScreen.tsx';
+import ProductsEditScreen from './screens/admin/ProductsEditScreen.tsx';
+import UserEditScreen from './screens/admin/UserEditScreen.tsx';
+import UserListScreen from './screens/admin/UserListScreen.tsx';
 import CartScreen from './screens/CartScreen.tsx';
 import HomeScreen from './screens/HomeScreen.tsx';
 import LoginScreen from './screens/LoginScreen.tsx';
@@ -22,15 +28,11 @@ import ProductScreen from './screens/ProductScreen.tsx';
 import ProfileScreen from './screens/ProfileScreen.tsx';
 import RegisterScreen from './screens/RegisterScreen.tsx';
 import ShippingScreen from './screens/ShippingScreen.tsx';
-import ProductListScreen from './screens/admin/ProductListScreen.tsx';
-import ProductsEditScreen from './screens/admin/ProductsEditScreen.tsx';
-import UserListScreen from './screens/admin/UserListScreen.tsx';
 
 import store from './store.ts';
 
 import './assets/bootstrap.custom.css';
 import './assets/index.css';
-import UserEditScreen from './screens/admin/UserEditScreen.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -74,10 +76,12 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <PayPalScriptProvider deferLoading options={{ clientId: '' }}>
-        <RouterProvider router={router} />
-      </PayPalScriptProvider>
-    </Provider>
+    <HelmetProvider>
+      <Provider store={store}>
+        <PayPalScriptProvider deferLoading options={{ clientId: '' }}>
+          <RouterProvider router={router} />
+        </PayPalScriptProvider>
+      </Provider>
+    </HelmetProvider>
   </React.StrictMode>
 );

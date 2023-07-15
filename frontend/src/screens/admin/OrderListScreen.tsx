@@ -12,8 +12,6 @@ const OrderListScreen = () => {
     error: isOrdersError,
   } = useGetOrdersQuery();
 
-  console.log(orders);
-
   if (isLoadingOrders) {
     return <Loader />;
   }

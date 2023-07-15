@@ -21,7 +21,6 @@ const ProductsEditScreen = () => {
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState('');
 
-  console.log(productId);
   const {
     data: product,
     isLoading,
@@ -31,8 +30,7 @@ const ProductsEditScreen = () => {
 
   const [updateProduct, { isLoading: isLoadingUpdate }] =
     useUpdateProductMutation();
-  const [uploadProductImage, { isLoading: isLoadingUpload }] =
-    useUploadProductImageMutation();
+  const [uploadProductImage] = useUploadProductImageMutation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -75,7 +73,6 @@ const ProductsEditScreen = () => {
 
     formData.append('image', file);
     try {
-      console.log(formData);
       const { image, message } = await uploadProductImage(formData).unwrap();
       toast.success(message);
       setImage(image);

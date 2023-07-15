@@ -4,8 +4,8 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Paginate from '../components/Paginate';
 import Product from '../components/Product';
-import { useGetProductsQuery } from '../slices/productsApiSlice';
 import ProductCarousel from '../components/ProductCarousel';
+import { useGetProductsQuery } from '../slices/productsApiSlice';
 
 const HomeScreen = () => {
   const { pageNumber = '1', keyword = '' } = useParams();
@@ -13,8 +13,6 @@ const HomeScreen = () => {
     pageNumber,
     keyword,
   });
-
-  console.log(isLoading);
 
   if (isLoading) {
     return <Loader />;

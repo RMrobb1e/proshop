@@ -20,6 +20,7 @@ import {
 } from '../slices/productsApiSlice';
 import { RootState } from '../types/store';
 import { toast } from 'react-toastify';
+import Meta from '../components/Meta';
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
@@ -71,6 +72,7 @@ const ProductScreen = () => {
 
   return (
     <>
+      <Meta title={`RalmShop - ${product.name}`} />
       <Link className="my-3 btn btn-light" to="/">
         Go Back
       </Link>
