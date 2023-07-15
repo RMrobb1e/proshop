@@ -1,6 +1,7 @@
 import express, { RequestHandler } from 'express';
 import {
   createProduct,
+  createProductReview,
   deleteProduct,
   getProductById,
   getProducts,
@@ -34,6 +35,6 @@ router
 
 router
   .route('/:id/reviews')
-  .post(protect as RequestHandler, createProduct as RequestHandler);
+  .post(protect as RequestHandler, createProductReview as RequestHandler);
 
 export default router;
