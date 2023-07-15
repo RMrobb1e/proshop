@@ -62,7 +62,7 @@ const ProductsEditScreen = () => {
       toast.success('Product updated successfully');
       navigate('/admin/product-list');
     } catch (error: any) {
-      toast.error(error?.data.message ?? error.error);
+      toast.error(error?.data?.message ?? error.error);
     }
   };
 
@@ -77,7 +77,7 @@ const ProductsEditScreen = () => {
       toast.success(message);
       setImage(image);
     } catch (error: any) {
-      toast.error(error?.data.message ?? error.error);
+      toast.error(error?.data?.message ?? error.error);
     }
   };
 
@@ -115,7 +115,6 @@ const ProductsEditScreen = () => {
               onChange={(e) => setPrice(Number(e.target.value))}
             />
           </Form.Group>
-          {/* IMAGE HERE */}
           <Form.Group controlId="image" className="my-2">
             <Form.Label>Image</Form.Label>
             <Form.Control
@@ -124,11 +123,7 @@ const ProductsEditScreen = () => {
               value={image ?? ''}
               onChange={(e) => setImage(e.target.value)}
             />
-            <Form.Control
-              type="file"
-              // lab="Choose file"
-              onChange={uploadFileHandler}
-            />
+            <Form.Control type="file" onChange={uploadFileHandler} />
           </Form.Group>
           <Form.Group controlId="brand" className="my-2">
             <Form.Label>Brand</Form.Label>

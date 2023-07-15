@@ -26,7 +26,7 @@ const UserListScreen = () => {
         refetch();
         toast.success('Product deleted successfully');
       } catch (error: any) {
-        toast.error(error?.data.message ?? error.error);
+        toast.error(error?.data?.message ?? error.error);
       }
     }
   };
