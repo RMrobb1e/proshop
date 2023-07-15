@@ -6,10 +6,13 @@ import Product from '../models/productModel';
 // @route GET /api/products
 // @access Public
 const getProducts = asyncHandler(async (req: Request, res: Response) => {
-  const pageSize = 4; //TODO: Change this
+  const pageSize = 10; //TODO: Change this
   const page = Number(req.query.pageNumber) || 1;
-  const count = await Product.countDocuments().exec();
-  const products = await Product.find({})
+  const keyword = req.query.keyword
+    ? { name: { $regex: req.query.keyword, $options: 'i' } }
+    : {};
+  const count = await Product.countDocuments({ ...keyword }).exec();
+  const products = await Product.find({ ...keyword })
     .limit(pageSize)
     .skip(pageSize * (page - 1))
     .exec();
