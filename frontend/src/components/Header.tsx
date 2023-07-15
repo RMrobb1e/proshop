@@ -8,6 +8,7 @@ import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import SearchBox from './SearchBox';
 
 const Header = () => {
   const { cartItems } = useSelector((state: RootState) => state.cart);
@@ -47,6 +48,7 @@ const Header = () => {
             className="justify-content-end"
           >
             <Nav className="ms-auto">
+              <SearchBox />
               <LinkContainer to="/cart">
                 <Nav.Link>
                   <FaShoppingCart /> Cart
