@@ -13,7 +13,7 @@
     "dev": "npm-run-all --parallel server client",
     "data:import": "npm run build && node dist/seeder.js -i",
     "data:destroy": "npm run build && node dist/seeder.js -d",
-    "deploy": "npm install && npm install --prefix frontend ** npm run build --prefix frontend"
+    "deploy": "npm install && npm run build && npm install --prefix frontend ** npm run build --prefix frontend"
   },
   "license": "MIT",
   "dependencies": {
