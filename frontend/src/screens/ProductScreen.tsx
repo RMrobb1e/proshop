@@ -21,6 +21,7 @@ import {
 import { RootState } from '../types/store';
 import { toast } from 'react-toastify';
 import Meta from '../components/Meta';
+import { formatCurrency } from '../utils/common';
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
@@ -91,7 +92,9 @@ const ProductScreen = () => {
                 text={`${product.numReviews} reviews`}
               />
             </ListGroup.Item>
-            <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+            <ListGroup.Item>
+              Price: ₱{formatCurrency(product.price)}
+            </ListGroup.Item>
             <ListGroup.Item>Description: {product.description}</ListGroup.Item>
           </ListGroup>
         </Col>
@@ -102,7 +105,7 @@ const ProductScreen = () => {
                 <Row>
                   <Col>Price:</Col>
                   <Col>
-                    <strong>${product.price}</strong>
+                    <strong>₱{formatCurrency(product.price)}</strong>
                   </Col>
                 </Row>
               </ListGroup.Item>

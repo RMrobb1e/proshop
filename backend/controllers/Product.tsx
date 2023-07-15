@@ -1,7 +1,6 @@
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
-import { formatCurrency } from '../utils/common';
 
 const Product = ({ product }) => {
   return (
@@ -20,7 +19,7 @@ const Product = ({ product }) => {
               text={`${product.numReviews} reviews`}
             />
           </Card.Text>
-          <Card.Text as="h3">₱{formatCurrency(product.price)}</Card.Text>
+          <Card.Text as="h3">${}</Card.Text>
         </Card.Body>
       </Link>
     </Card>

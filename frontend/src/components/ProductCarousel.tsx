@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useGetTopProductsQuery } from '../slices/productsApiSlice';
 import Loader from './Loader';
 import Message from './Message';
+import { formatCurrency } from '../utils/common';
 
 const ProductCarousel = () => {
   const { data: products, isLoading, error } = useGetTopProductsQuery();
@@ -23,7 +24,7 @@ const ProductCarousel = () => {
             <Image src={product.image} alt={product.name} fluid />
             <Carousel.Caption className="carousel-caption">
               <h2>
-                {product.name} (${product.price})
+                {product.name} (₱{formatCurrency(product.price)})
               </h2>
             </Carousel.Caption>
           </Link>

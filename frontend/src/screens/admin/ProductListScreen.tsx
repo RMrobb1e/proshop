@@ -11,6 +11,7 @@ import Message from '../../components/Message';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import Paginate from '../../components/Paginate';
+import { formatCurrency } from '../../utils/common';
 
 const ProductListScreen = () => {
   const { pageNumber = '1', keyword = '' } = useParams();
@@ -85,7 +86,7 @@ const ProductListScreen = () => {
             <tr key={product._id}>
               <td>{product._id}</td>
               <td>{product.name}</td>
-              <td>${product.price}</td>
+              <td>₱{formatCurrency(product.price)}</td>
               <td>{product.category}</td>
               <td>{product.brand}</td>
               <td>
