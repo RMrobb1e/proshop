@@ -6,14 +6,15 @@
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "build": "rimraf ./dist && npx tsc",
+    "build:backend": "pnpm install --frozen-lockfile && rimraf ./dist && npx tsc",
+    "build:frontend": "pnpm install --frozen-lockfile --prefix frontend && npm run build --prefix frontend",
     "start": "npx nodemon",
-    "server": "npm run build && nodemon dist/server.js",
-    "client": "npm run dev --prefix frontend",
+    "server": "pnpm run build && nodemon dist/server.js",
+    "client": "pnpm run dev --prefix frontend",
     "dev": "npm-run-all --parallel server client",
-    "data:import": "npm run build && node dist/seeder.js -i",
-    "data:destroy": "npm run build && node dist/seeder.js -d",
-    "deploy": "npm install && npm run build && npm install --prefix frontend ** npm run build --prefix frontend"
+    "data:import": "pnpm run build && node dist/seeder.js -i",
+    "data:destroy": "pnpm run build && node dist/seeder.js -d",
+    "deploy": "pnpm run build:backend && pnpm run build:frontend"
   },
   "license": "MIT",
   "dependencies": {
