@@ -51,16 +51,13 @@ const ProductScreen = () => {
     e.preventDefault();
 
     try {
-      await createReview({
-        productId,
-        review: { rating, comment },
-      });
+      await createReview({ rating, comment, productId }).unwrap();
       refetch();
       setRating(0);
       setComment('');
       toast.success('Review submitted');
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(error.data?.message ?? error.error);
     }
   };
 

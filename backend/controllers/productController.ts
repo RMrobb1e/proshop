@@ -106,7 +106,10 @@ const createProductReview = asyncHandler(
       throw new Error('Product not found');
     }
 
-    const { rating, comment } = req.body.review;
+    console.log(req.user._id);
+    console.log(product.reviews);
+
+    const { rating, comment } = req.body;
     const alreadyReviewed = product.reviews.find(
       (r: any) => r.user.toString() === req.user._id.toString()
     );
