@@ -5,6 +5,7 @@ import {
   deleteProduct,
   getProductById,
   getProducts,
+  getTopProducts,
   updateProduct,
 } from '../controllers/productController';
 import { admin, protect } from '../middleware/authMiddleware';
@@ -19,6 +20,9 @@ router
     admin as RequestHandler,
     createProduct as RequestHandler
   );
+
+router.get('/top', getTopProducts as RequestHandler);
+
 router
   .route('/:id')
   .get(getProductById as RequestHandler)
