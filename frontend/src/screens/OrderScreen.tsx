@@ -205,25 +205,25 @@ const OrderScreen = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items:</Col>
-                  <Col>$ {order.itemsPrice.toFixed(2)}</Col>
+                  <Col>₱ {order.itemsPrice.toFixed(2)}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping:</Col>
-                  <Col>$ {order.shippingPrice.toFixed(2)}</Col>
+                  <Col>₱ {order.shippingPrice.toFixed(2)}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Tax:</Col>
-                  <Col>$ {order.taxPrice.toFixed(2)}</Col>
+                  <Col>₱ {order.taxPrice.toFixed(2)}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total:</Col>
-                  <Col>$ {order.totalPrice.toFixed(2)}</Col>
+                  <Col>₱ {order.totalPrice.toFixed(2)}</Col>
                 </Row>
               </ListGroup.Item>
               {!order.isPaid && (
