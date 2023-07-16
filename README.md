@@ -30,12 +30,15 @@
 Rename the `.env.example` file to `.env` and add the following
 
 ```
-NODE_ENV = development
-PORT = 5000
-MONGO_URI = your mongodb uri
-JWT_SECRET = 'abc123'
-PAYPAL_CLIENT_ID = your paypal client id
-PAGINATION_LIMIT = 8
+NODE_ENV=sample
+PORT=sample
+MONGO_URI=sample
+JWT_SECRET=sample
+PAGINATION_LIMIT=sample
+AWS_S3_ACCESS_KEY_ID=sample
+AWS_S3_SECRET_ACCESS_KEY=sample
+AWS_S3_BUCKET_NAME=sample
+AWS_S3_REGION=sample
 ```
 
 Change the JWT_SECRET and PAGINATION_LIMIT to what you want
@@ -43,9 +46,9 @@ Change the JWT_SECRET and PAGINATION_LIMIT to what you want
 ### Install Dependencies (frontend & backend)
 
 ```
-npm install
+pnpm install
 cd frontend
-npm install
+pnpm install
 ```
 
 ### Run
@@ -53,10 +56,10 @@ npm install
 ```
 
 # Run frontend (:3000) & backend (:5000)
-npm run dev
+pnpm run dev
 
 # Run backend only
-npm run server
+pnpm run server
 ```
 
 ## Build & Deploy
@@ -64,7 +67,7 @@ npm run server
 ```
 # Create frontend prod build
 cd frontend
-npm run build
+pnpm run build:frontend
 ```
 
 ### Seed Database
@@ -73,8 +76,8 @@ You can use the following commands to seed the database with some sample users a
 
 ```
 # Import data
-npm run data:import
+pnpm run data:import
 
 # Destroy data
-npm run data:destroy
+pnpm run data:destroy
 ```
