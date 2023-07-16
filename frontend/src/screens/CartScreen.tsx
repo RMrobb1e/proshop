@@ -20,6 +20,7 @@ const CartScreen = () => {
   const dispatch = useDispatch();
 
   const cart = useSelector((state: RootState) => state.cart);
+  const { userInfo } = useSelector((state: RootState) => state.auth);
 
   const addToCartHandler = async (product: Product, qty: number) => {
     dispatch(addToCart({ ...product, qty }));
@@ -30,14 +31,16 @@ const CartScreen = () => {
   };
 
   const checkoutHandler = async () => {
-    navigate('/login?redirect=shipping');
+    if (userInfo) {
+      navigate('/shipping');
+    } else navigate('/login?redirect=shipping');
   };
 
   return (
     <Row>
       <Col md={8}>
         <h1 style={{ marginBottom: 20 }}>Shopping Cart</h1>
-        {cart.cartItems.length === 0 ? (
+        {cart?.cartItems?.length === 0 ? (
           <Message>
             Your cart is empty. <Link to="/">Go Back</Link>
           </Message>
@@ -107,7 +110,7 @@ const CartScreen = () => {
               <Button
                 type="button"
                 className="btn-block"
-                disabled={cart.cartItems.length === 0}
+                disabled={cart?.cartItems?.length === 0}
                 onClick={() => checkoutHandler()}
               >
                 Proceed To Checkout
